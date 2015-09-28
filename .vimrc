@@ -81,6 +81,9 @@ set clipboard=unnamedplus
 " Gundo
 nnoremap <F3> :GundoToggle<CR>
 
+" Tagbar
+nmap <F8> :TagbarToggle <CR>
+
 " YCM
 let g:ycm_always_populate_location_list = 1
 
@@ -97,12 +100,6 @@ map <C-n> :NERDTreeToggle<CR>
 " Air-line
 set laststatus=2
 let g:airline_powerline_fonts=1
-
-" Class-browser (tagbar)
-nmap <F6> :TagbarToggle<CR>
-
-" Gundo
-nnoremap <F3> :GundoToggle<CR>
 
 " Toogle the errors panel
 function! ToggleErrors()
@@ -155,4 +152,3 @@ endif
 call GetCTagsFile()
 
 nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
-nmap <F8> :TagbarToggle <CR>
