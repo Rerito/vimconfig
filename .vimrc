@@ -82,6 +82,7 @@ set clipboard=unnamedplus
 
 " Gundo
 nnoremap <F3> :GundoToggle<CR>
+let g:gundo_prefer_python3 = 1
 
 " Tagbar
 nmap <F8> :TagbarToggle <CR>
@@ -94,7 +95,6 @@ let g:ycm_always_populate_location_list = 1
 syntax enable
 set t_Co=256
 set background=dark
-colorscheme bandit
 
 " Nerd-tree
 map <C-n> :NERDTreeToggle<CR>
