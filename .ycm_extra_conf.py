@@ -18,7 +18,7 @@ def read_flags_from_file(fname):
 # not strictly necessary.
 compilation_database_folder = DirectoryOfThisScript()
 
-default_command_line_flags_file = 'default_flags'
+default_command_line_flags_file = os.path.join(DirectoryOfThisScript(), 'default_flags')
 
 # This provides a safe fall-back if no compilation commands are available. You could also add a
 # includes relative to your project directory, for example.
@@ -106,11 +106,12 @@ def FlagsForFile( filename, **kwargs ):
 
     final_flags = PrepareClangFlags(MakeRelativePathsInFlagsAbsolute(
       compilation_info.compiler_flags_,
-      compilation_info.compiler_working_dir_ ))
+      compilation_info.compiler_working_dir_ ), filename)
 
   else:
     relative_to = DirectoryOfThisScript()
-    final_flags = PrepareClangFlags(MakeRelativePathsInFlagsAbsolute( flags, relative_to ))
+    final_flags = PrepareClangFlags(MakeRelativePathsInFlagsAbsolute( flags,
+        relative_to ), filename)
 
   return {
     'flags': final_flags,
