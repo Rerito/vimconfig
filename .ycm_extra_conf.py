@@ -101,11 +101,10 @@ def FlagsForFile( filename, **kwargs ):
     # Bear in mind that compilation_info.compiler_flags_ does NOT return a
     # python list, but a "list-like" StringVec object
     compilation_info = GetCompilationInfoForFile( filename )
-    if not compilation_info:
-      return None
+    _flags = flags if not compilation_info or not compilation_info.compiler_flags_ else compilation_info.compiler_flags_
 
     final_flags = PrepareClangFlags(MakeRelativePathsInFlagsAbsolute(
-      compilation_info.compiler_flags_,
+      _flags,
       compilation_info.compiler_working_dir_ ), filename)
 
   else:
