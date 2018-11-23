@@ -102,10 +102,11 @@ def FlagsForFile( filename, **kwargs ):
     # python list, but a "list-like" StringVec object
     compilation_info = GetCompilationInfoForFile( filename )
     _flags = flags if not compilation_info or not compilation_info.compiler_flags_ else compilation_info.compiler_flags_
+    _dir = compilation_info.compiler_working_dir_ if compilation_info else DirectoryOfThisScript()
 
     final_flags = PrepareClangFlags(MakeRelativePathsInFlagsAbsolute(
       _flags,
-      compilation_info.compiler_working_dir_ ), filename)
+      _dir ), filename)
 
   else:
     relative_to = DirectoryOfThisScript()
