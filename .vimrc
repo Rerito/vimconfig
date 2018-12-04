@@ -34,6 +34,8 @@ Plugin 'flazz/vim-colorschemes'
 " Bandit color scheme
 Plugin 'bandit.vim'
 
+Plugin 'Conque-GDB'
+
 " On the flight syntax check
 Plugin 'scrooloose/syntastic'
 
@@ -52,6 +54,8 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'javacomplete'
 
 Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'rhysd/vim-clang-format'
 
 " CTags Highlighting
 Plugin 'TagHighlight'
@@ -152,5 +156,10 @@ if(has("autocmd"))
 endif
 
 call GetCTagsFile()
+
+let g:clang_format#detect_style_file=1
+autocmd FileType c,cpp,h,hpp nnoremap <C-c>f :ClangFormat<CR>
+autocmd FileType c,cpp,h,hpp vnoremap <C-c>f :ClangFormat<CR>
+autocmd BufWritePost (*.c,*.cpp,*.h,*.hpp) !clang-format -style=file -i <afile>
 
 nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
